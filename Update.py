@@ -16,7 +16,7 @@ def updateDb(line):
     sqlQuery = ''
     try:
         pub = line[-2]
-        adv = line[-1]
+        adv = line[-1].lower()
         line = line[1]
         cursor.execute("SELECT publisher, advertiser FROM database WHERE publisher='{}' and advertiser='{}'".format(pub, int(line[0])));
         dataQuery = cursor.fetchall()
@@ -46,6 +46,7 @@ def printDB():
         
 def getProgID(progID):
     x = []
+    progID = progID.lower()
     conn = sqlite3.connect('dataBase.db')
     cursor = conn.cursor()
     cursor.execute("SELECT advertiserName FROM dataBase;")
@@ -70,6 +71,5 @@ def getPartnerId(progID, publisher ):
     except:
         return 0
     
-
 
     

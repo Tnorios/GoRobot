@@ -5,7 +5,7 @@ Created on Wed Jan 17 22:19:23 2018
 
 @author: gabrieltenorio
 """
-
+import Write as w
 import xlrd as excel
 import os.path
 columns = []
@@ -19,13 +19,13 @@ for column in range(pl.ncols):
     index = pl.col_values(column)[0]
     if(index == "PEDIDO" or  index =="LOJA" or index =="VALOR" or index=="DATA"):
         columns.append(column)
-        print(columns)
 for i in range (1, len(pl.col_values(column))):
     for j in columns:        
         values.append(pl.row_values(i)[j])
     data.append(values)
     values = []
-print(data)
+
+w.write(data)
        
     
             

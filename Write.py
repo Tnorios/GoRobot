@@ -14,9 +14,6 @@ import os.path
 
 
 def write(sales):
-    sales.sort()
-    print(sales)
-    print('')
     progs = {}
     date = time.strftime("%Y-%m-%d")
     DatePath = '/Users/gabrieltenorio/desktop/files//Arquivos-'+date
@@ -34,7 +31,6 @@ def write(sales):
         with open(DatePath+'/'+key+'-'+date + '.csv', 'w', newline='') as csvfile:
             writer = csv.writer(csvfile, dialect='excel', delimiter=';')
             writer.writerow(['prog_id','time_stamp','order_id','customer_id','currency_symbol','total_price','review_state','review_note','partner_id','tracking_type','update_flag'])
-            print('')
             order = []
             for data in values:         
                 if data[2] in order:
@@ -55,7 +51,6 @@ def write(sales):
                             reviewNote = data[-1]
                         PartnerId = DB.getPartnerId(ProgID, 'meliuz@zanox.com')
                         line.extend((ProgID, Fdate, str(data[2]), 'meliuz@zanox.com', 'BRL', float(data[3]), 0 ,str(reviewNote),PartnerId,3,4 ))
-                        print(line)
                         writer.writerow(line)
                 
     
@@ -64,4 +59,3 @@ def write(sales):
         
                 
 
-write([['Teste', '12-01-2018', 32423412.0, '423'],['Teste', '12-01-2018', 3242343412.0, '423'],['123 Milhas', 430536.0, '7O1-M0K-17', 2450.44],['Nescafé Dolce Gusto',43036.0, 5501915888.0, 646.0],['Monte Carlo Joias',43036.0, '7729406525580-01', 42.0],  ['Nescafé Dolce Gusto',43036.0, 5501915888.0, 666.0],['Monte Carlo Joias',43036.0, '772940652580-01', 142.0], ['Motorola',43036.0, '01-64886397', 1300.0],['Monte Carlo Joias',43036.0, '772940623452580-01', 96.0]])
