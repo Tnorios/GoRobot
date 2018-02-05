@@ -43,17 +43,21 @@ def write(sales):
                     order.append(data[2])
                     line = []
                     ProgID = DB.getProgID(key)
-                    Fdate  = time.strftime("%Y-%m-%d" + " 10:00:00")
-                    if not(isinstance(data[-1], str)):
-                        seconds = (data[1] - 25569) * 86400.0
-                        reviewNote = (datetime.datetime.utcfromtimestamp(seconds))
+                    if (ProgID == 0):
+                        print("program ID error", key)
+                        break
                     else:
-                        reviewNote = data[-1]
-                    PartnerId = DB.getPartnerId(ProgID, 'meliuz@zanox.com')
-                    line.extend((ProgID, Fdate, str(data[2]), 'meliuz@zanox.com', 'BRL', float(data[3]), 0 ,str(reviewNote),PartnerId,3,4 ))
-                    print(line)
-                    writer.writerow(line)
-            
+                        Fdate  = time.strftime("%Y-%m-%d" + " 10:00:00")
+                        if not(isinstance(data[-1], str)):
+                            seconds = (data[1] - 25569) * 86400.0
+                            reviewNote = (datetime.datetime.utcfromtimestamp(seconds))
+                        else:
+                            reviewNote = data[-1]
+                        PartnerId = DB.getPartnerId(ProgID, 'meliuz@zanox.com')
+                        line.extend((ProgID, Fdate, str(data[2]), 'meliuz@zanox.com', 'BRL', float(data[3]), 0 ,str(reviewNote),PartnerId,3,4 ))
+                        print(line)
+                        writer.writerow(line)
+                
     
         
         
