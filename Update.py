@@ -28,7 +28,10 @@ def updateDb(line):
             conn.commit()
             conn.close()
     except Exception as e:
-        print('Erro ao atualizar o banco na query:',sqlQuery,e)
+        if(sqlQuery):
+            print('Erro ao atualizar o banco na query:',sqlQuery,e)
+        else: 
+            print('')
         
         
 def printDB():
@@ -69,5 +72,4 @@ def getPartnerId(progID, publisher ):
     
 
 
-    
     

@@ -1,4 +1,4 @@
-b#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jan 17 22:19:23 2018
@@ -19,10 +19,11 @@ for column in range(pl.ncols):
     index = pl.col_values(column)[0]
     if(index == "PEDIDO" or  index =="LOJA" or index =="VALOR" or index=="DATA"):
         columns.append(column)
+        print(columns)
 for i in range (1, len(pl.col_values(column))):
-    for j in columns:      
+    for j in columns:        
         values.append(pl.row_values(i)[j])
-        data.append(values)
+    data.append(values)
     values = []
 print(data)
        

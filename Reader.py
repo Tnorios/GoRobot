@@ -10,6 +10,7 @@ import csv
 
 def readRows(file):
     data = []
+    folder = file.split("/")[-2]
     with open(os.path.abspath(file),encoding='ISO-8859-1') as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',', )
         string = str(csvfile).split("/")[-1]
@@ -30,7 +31,7 @@ def readRows(file):
                     else:
                         data.append(row)
         except Exception as e:
-            print("Erro: ",e,string.split("mode")[0],end='')     
+            print(e,string.split("mode")[0],"da pasta",folder,end='')     
         for i in range(1,(len(data))):
             for j in range(0,len(data)-1):
                 #print('(',i,"&",j,')')
