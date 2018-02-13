@@ -14,6 +14,7 @@ import os.path
 
 
 def write(sales):
+    errorLog = []
     progs = {}
     date = time.strftime("%Y-%m-%d")
     DatePath = '/Users/gabrieltenorio/desktop/files//Arquivos-'+date
@@ -40,7 +41,7 @@ def write(sales):
                     line = []
                     ProgID = DB.getProgID(key)
                     if (ProgID == 0):
-                        print("program ID error", key)
+                        errorLog.append(("Couldn't find the program ID for: "+str(key)))
                         break
                     else:
                         Fdate  = time.strftime("%Y-%m-%d" + " 10:00:00")
@@ -51,8 +52,12 @@ def write(sales):
                             reviewNote = data[-1]
                         PartnerId = DB.getPartnerId(ProgID, 'meliuz@zanox.com')
                         line.extend((ProgID, Fdate, str(data[2]), 'meliuz@zanox.com', 'BRL', float(data[3]), 0 ,str(reviewNote),PartnerId,3,4 ))
-                        writer.writerow(line)
-                
+                        try:
+                            writer.writerow(line)
+                        except Exception as e:
+                            errorLog.append(e)
+    return errorLog
+                        
     
         
         
