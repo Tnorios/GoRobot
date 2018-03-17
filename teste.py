@@ -6,7 +6,8 @@ except ImportError:
   import tkinter.ttk as ttk
 
 
-def main():
+
+def load():
 
   root = Tkinter.Tk()
 
@@ -20,11 +21,10 @@ def main():
 
   pb_hd.pack(expand=True, fill=Tkinter.BOTH, side=Tkinter.TOP)
   
-  pb_hd.start(1)
+  pb_hd.start(10)
   
 
   root.mainloop()
 
 
-if __name__ == '__main__':
-  main()
+load();
